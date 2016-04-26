@@ -5,7 +5,9 @@ defmodule LineBot.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", LineBot do
+  scope "/", LineBot do
     pipe_through :api
+
+    post "/callback", MessageController, :callback
   end
 end
