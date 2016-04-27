@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :line_bot, LineBot.Endpoint,
-  http: [port: 8000],
+  http: [port: 8000]
 
 config :logger, level: :info
 
