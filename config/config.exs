@@ -14,6 +14,11 @@ config :line_bot, LineBot.Endpoint,
   pubsub: [name: LineBot.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :line_bot, :channel,
+  id: "1460000000",
+  secret: "caaaaaa0000000dddddddd777777dddd",
+  mid: "u01880000000000000000000000000000"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -27,3 +32,4 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
