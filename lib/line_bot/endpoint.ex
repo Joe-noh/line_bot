@@ -20,6 +20,8 @@ defmodule LineBot.Endpoint do
   plug Plug.RequestId
   plug Plug.Logger
 
+  plug LineBot.StoreRawBodyPlug
+
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],

@@ -1,16 +1,13 @@
 defmodule LineBot.SignaturePlug do
   import Plug.Conn
 
-  def init(opts = [channel_secret: _secret]) do
-    opts
-  end
+  def init(opts = [channel_secret: _secret]), do: opts
 
   def call(conn, channel_secret: secret) do
-    {:ok, body, conn} = read_body(conn)
+    body = conn.private[:raw_body]
+    signature = :crypto.hmac(:sha256, secret, body) |> Base.encode64
 
     [header_signature] = get_req_header(conn, "x-line-channelsignature")
-
-    signature = :crypto.hmac(:sha256, secret, body) |> Base.encode64
 
     if signature == header_signature do
       conn
