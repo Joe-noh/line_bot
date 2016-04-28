@@ -31,6 +31,7 @@ defmodule LineBot.Mixfile do
       {:cowboy, "~> 1.0"},
 
       {:httpoison, "~> 0.8"},
+      {:logger_file_backend, "0.0.7"},
 
       {:exrm, "~> 1.0"}
     ]
