@@ -14,9 +14,13 @@ defmodule LineBot.Mixfile do
   end
 
   def application do
-    [mod: {LineBot, []},
-     applications: [:phoenix, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison]]
+    [
+      mod: {LineBot, []},
+      applications: [
+        :phoenix, :cowboy, :logger, :gettext, :phoenix_ecto,
+        :postgrex, :httpoison, :logger_file_backend
+      ]
+    ]
   end
 
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
