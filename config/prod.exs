@@ -9,11 +9,11 @@ config :logger, backends: [
 ]
 
 config :logger, :info,
-  path: "logs/info.log",
+  path: "log/info.log",
   level: :info
 
 config :logger, :error,
-  path: "logs/error.log",
+  path: "log/error.log",
   level: :error
 
 import_config "prod.secret.exs"
