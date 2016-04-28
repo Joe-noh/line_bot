@@ -10,8 +10,15 @@ defmodule LineBot.Responder do
     "Content-Type" => "application/json;charset=UTF-8"
   }
 
-  def send_response(%{"content" => %{"opType" => 4, "params" => [user_mid, nil, nil]}}) do
+  @op_type_friend  4
+  @op_type_blocked 8
+
+  def send_response(%{"content" => %{"opType" => @op_type_friend, "params" => [user_mid, _, _]}}) do
     text_message([user_mid], "こんにちわ！") |> do_send_response
+  end
+
+  def send_response(%{"content" => %{"opType" => @op_type_blocked}}) do
+    # do nothing
   end
 
   @answers ["いいね！", "さすが！", "どすか！"]
