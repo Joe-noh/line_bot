@@ -10,7 +10,7 @@ defmodule LineBot.Responder do
     "Content-Type" => "application/json;charset=UTF-8"
   }
 
-  def send_response(%{"content" => %{"opType" => 4, "params" => [user_mid, nil, nil]}) do
+  def send_response(%{"content" => %{"opType" => 4, "params" => [user_mid, nil, nil]}}) do
     text_message([user_mid], "こんにちわ！") |> do_send_response
   end
 
