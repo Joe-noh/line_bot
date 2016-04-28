@@ -10,20 +10,30 @@ defmodule LineBot.Responder do
     "Content-Type" => "application/json;charset=UTF-8"
   }
 
+  def send_response(%{"content" => %{"opType" => 4, "params" => [user_mid, nil, nil]}) do
+    text_message([user_mid], "こんにちわ！") |> do_send_response
+  end
+
   @answers ["いいね！", "さすが！", "どすか！"]
 
   def send_response(%{"content" => %{"from" => reply_to}}) do
-    message = Poison.encode! %{
-      "to" => [reply_to],
+    text_message([reply_to], Enum.random(@answers)) |> do_send_response
+  end
+
+  defp do_send_response(message) do
+    HTTPoison.post(@url, message, @headers)
+  end
+
+  defp text_message(mids, text) do
+    Poison.encode! %{
+      "to" => mids,
       "toChannel" => 1383378250,
       "eventType" => "138311608800106203",
       "content" => %{
         "contentType" => 1,
         "toType" => 1,
-        "text" => Enum.random(@answers)
+        "text" => text
       }
     }
-
-    HTTPoison.post(@url, message, @headers)
   end
 end
